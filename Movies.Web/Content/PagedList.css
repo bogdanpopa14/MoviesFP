@@ -40,6 +40,7 @@
     .pagination > li > a:focus,
     .pagination > li > span:focus {
         background-color: #00d277;
+        color:black;
     }
 
     .pagination > .active > a,
@@ -49,7 +50,7 @@
     .pagination > .active > a:focus,
     .pagination > .active > span:focus {
         z-index: 2;
-        color: #00d277;
+        color: black;
         cursor: default;
         background-color: #00d277;
         border-color: #428bca;
