@@ -39,8 +39,8 @@
     .pagination > li > span:hover,
     .pagination > li > a:focus,
     .pagination > li > span:focus {
-        background-color: #00d277;
-        color:black;
+        background-color: #34495e;
+        color: white;
     }
 
     .pagination > .active > a,
