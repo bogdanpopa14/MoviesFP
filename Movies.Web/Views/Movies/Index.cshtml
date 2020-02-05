@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Movies.DB.Movies>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "All movies";
+}
+<br />
+<div class="h1 container text-center">
+    All movies
+</div>
+<br />
+<br />
+<div class="form-control">
+    @using (Html.BeginForm("Index", "Movies", FormMethod.Get))
+    {
+        <p>
+            Find by title: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+</div>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th style="text-align:center">@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+            <th style="text-align:center">@Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter })</th>
+            <th style="text-align:center">Genre</th>
+            <th style="text-align:center">@Html.ActionLink("Ratting", "Index", new { sortOrder = ViewBag.RattingSortParam, currentFilter = ViewBag.CurrentFilter })</th>
+            <th style="text-align:center">Action</th>
+        </tr>
+
+        @foreach (var movie in Model)
+        {
+    <tr>
+        <td>@movie.Name</td>
+        <td>@movie.Year</td>
+        <td>@movie.Genre.Name</td>
+        <td>@movie.Ratting.Ratting1</td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td style="text-align:center">@Html.ActionLink("Add to favorites", "AddToFav", "Movies", new { id = movie.Id, userId=User.Identity.GetUserId() }, new { @class = "btn btn-success" })</td>
+        }
+        else
+        {
+            <td style="text-align:center">@Html.ActionLink("Log in to create favorites list", "Login", "Account",null, new { @class = "btn btn-success" })</td>
+        }
+    </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+</div>
+

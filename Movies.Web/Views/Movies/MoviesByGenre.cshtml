@@ -1,0 +1,35 @@
+﻿@model List<Movies.DB.Movies>
+
+@{
+    ViewBag.Title = ViewBag.genre;
+}
+<br />
+<div class="h1 container text-center">
+    All @ViewBag.genre movies
+</div>
+<br />
+<br />
+<div>
+    <table class="table table-bordered  table-responsive table-hover">
+
+        <thead>
+
+            <tr style="background-color:#363532;color:white">
+                <th scope="col" style="text-align:center">Title</th>
+                <th scope="col" style="text-align:center">Year</th>
+                <th scope="col" style="text-align:center">Ratting</th>
+
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Year</td>
+                <td>@item.Ratting.Ratting1</td>
+            </tr>
+        }
+    </table>
+</div>
+

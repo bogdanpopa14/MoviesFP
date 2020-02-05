@@ -1,0 +1,56 @@
+﻿@model Movies.DB.Favorites
+
+@{
+    ViewBag.Title = "Personal ratting";
+}
+
+<div class="container">
+    <div class="text-center">
+
+
+
+        @if (Model.RattingId == null)
+        {
+            <h1>Add personal ratting</h1>
+        }
+        else
+        {
+            <h1>Edit personal ratting</h1>
+        }
+    </div>
+    <br />
+    <div class="form-group center-block" ,role="form">
+
+        @using (Html.BeginForm("Ratting", "Favorites", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.RattingId, new { @class = "control-label col-sm-2" })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(x => x.RattingId, ViewBag.ratlistname as SelectList, "Select ratting", new { @class = "form-control" })
+                </div>
+            </div>
+            @Html.HiddenFor(x=>x.UserId)
+
+            if (Model.RattingId == null)
+            {
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Add ratting" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Edit ratting" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+</div>

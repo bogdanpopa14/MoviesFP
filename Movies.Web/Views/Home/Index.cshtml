@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/Content/tv0a3q0pieea71y2aum4 (1).png" class="img-responsive center-block" />
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>More movies</h2>
+        <p>
+            On this website you can see the largest movie DB. You can go and search in our movies librarry and sort the movies by title,year or ratting.
+            We have what movie you want. Have fun!
+
+        </p>
+        <p>@Html.ActionLink("Movies librarry >>", "Index", "Movies", null, new { @class = "btn btn-success" })</p>
+    </div>
+    <div class="col-md-4">
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            <h2>Your favorites movies</h2>
+            <p>You can search in our librarry and add movies to your favorites list, also you cand give your personal ratting for each movie in your favorites list</p>
+            <p>@Html.ActionLink("Favorites movies >>", "Index", "Favorites", null, new { @class = "btn btn-success" })</p>
+        }
+        else
+        {
+            <h2>Create your favorites</h2>
+            <p>If you register on our site, you cand add movies to your favorites list and give personal ratting. Don't give it another thought and make an account right now </p>
+            <p>@Html.ActionLink("Join us >>", "Register", "Account", null, new { @class = "btn btn-success" })</p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>You have troubles?</h2>
+        <p>If you chave problem with something do not hesitate to contact us right now</p>
+        <p>@Html.ActionLink("Contact us >>", "Contact", "Home", null, new { @class = "btn btn-success " })</p>
+    </div>
+</div>

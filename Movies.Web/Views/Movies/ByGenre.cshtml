@@ -1,0 +1,31 @@
+﻿@model List<Movies.DB.Genre>
+@{
+    ViewBag.Title = "By Genre";
+}
+
+
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+
+
+            <div class="container" style="left:50%;align-content:center">
+                <div class="list-group " style="text-align:center; width:30%">
+                    <ul>
+                        <li class="list-group-item list-group-item-success  text-center" style="background-color:#00d277;color:black">All Genre </li>
+                        @foreach (var item in Model)
+                        {
+                            @Html.ActionLink(item.Name, "MoviesByGenre", "Movies", new { id = item.Id }, new { @class = "list-group-item list-group-item-action" })
+                        }
+
+
+                    </ul>
+
+                </div>
+            </div>
+    </div>
+</div>

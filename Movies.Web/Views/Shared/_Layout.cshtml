@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="~/Content/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BMR</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top " style="background-color:#00d277">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand mx-auto">
+                    <img class="pull-right" src="~/Content/Webp.net-resizeimage (1).png" title="title" alt="additional title" />
+                    <span style="color:black;font:bolder">BMR</span>
+                </a>
+                
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <span class="glyphicon glyphicon-home"></span>
+                            Home
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-film"></span>
+                            Movies<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+
+
+
+                            <li>@Html.ActionLink("All movies", "Index", "Movies")</li>
+                            <li>@Html.ActionLink("View by genre", "ByGenre", "Movies")</li>
+
+
+
+
+                        </ul>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-star"></span> My favorites<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <li>@Html.ActionLink("My movies", "Index", "Favorites")</li>
+
+                            </ul>
+                        </li>
+                    }
+
+
+                    @if (User.IsInRole("Admin"))
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-pencil"></span> Administration<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+
+
+
+                                <li>@Html.ActionLink("Administrate movies", "Index", "Administration")</li>
+                                <li>@Html.ActionLink("Add movie", "Create", "Administration")</li>
+
+
+
+
+                            </ul>
+                        </li>
+
+                    }
+                    
+
+                <li>
+                    <a href="@Url.Action("About", "Home")">
+                        <span class=" glyphicon glyphicon-info-sign"></span>
+                        About
+                    </a>
+                </li>
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")">
+                            <span class=" glyphicon glyphicon-envelope"></span>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+                            @Html.Partial("_LoginPartial")
+</div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - BMR</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
