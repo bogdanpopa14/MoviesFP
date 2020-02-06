@@ -112,6 +112,7 @@ namespace Movies.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 return View(model);

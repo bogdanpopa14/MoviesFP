@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Movies.DB;
 using PagedList;
 using Movies.Data;
+using Microsoft.AspNet.Identity;
+using Movies.Web.Controllers;
 
 namespace Movies.Web.Controllers
 {
@@ -71,6 +73,8 @@ namespace Movies.Web.Controllers
 
             return View(movie);
         }
+
+      
 
 
         [HttpPost]

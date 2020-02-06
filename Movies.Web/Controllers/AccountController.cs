@@ -57,6 +57,7 @@ namespace Movies.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -134,6 +135,30 @@ namespace Movies.Web.Controllers
             }
         }
 
+        
+        public ActionResult DeleteAdmin(ApplicationUser user)
+        {
+           
+           var sm= UserManager.RemoveFromRole(user.Id, "Admin");
+            UserManager.AddToRole(user.Id, "User");
+            return RedirectToAction("Users");
+        }
+
+
+        public ActionResult GiveAdmin(ApplicationUser user)
+        {
+            
+            UserManager.RemoveFromRole(user.Id, "User");
+            UserManager.AddToRole(user.Id, "Admin");
+            return RedirectToAction("Users");
+        }
+
+        public ActionResult Delete(ApplicationUser user)
+        {
+            var delete = UserManager.Delete(user);
+            return RedirectToAction("Users");
+        }
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -155,6 +180,7 @@ namespace Movies.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    
                     var curentUser = UserManager.FindByName(user.UserName);
                     var roleResult = UserManager.AddToRole(curentUser.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -192,7 +218,21 @@ namespace Movies.Web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+            
             return View();
+        }
+
+
+        public ActionResult Users()
+        {
+            System.Collections.Generic.List<ApplicationUser> list =UserManager.Users.ToList();
+            var context = new ApplicationDbContext();
+            System.Collections.Generic.List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole> list2 =context.Roles.ToList();
+            SelectList listItems = new SelectList(list2, "Id", "Name");
+            ViewBag.roles = list2;
+            var s=UserManager.Users.Select(x => x.Roles).ToList();
+            
+            return View(list);
         }
 
         //
