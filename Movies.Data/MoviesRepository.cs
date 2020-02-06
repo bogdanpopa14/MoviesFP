@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Movies.DB;
+using Movies.BusinessLogic;
 
 namespace Movies.Data
 {
-    public class MoviesRepository
+    public class MoviesRepository:IMoviesRepository
     {
         MovieFPEntities context = new MovieFPEntities();
 
