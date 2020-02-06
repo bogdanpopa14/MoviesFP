@@ -11,7 +11,9 @@ namespace Movies.DB
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Movies
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +21,21 @@ namespace Movies.DB
         {
             this.Favorites = new HashSet<Favorites>();
         }
-    
+
+        int max = DateTime.Now.Year;
         public int Id { get; set; }
+        [Required(ErrorMessage ="Title is required")]
+        [DisplayName("Title")]
         public string Name { get; set; }
+        [Required(ErrorMessage ="Select a ratting from list")]
+        [DisplayName("Ratting")]
         public int RattingId { get; set; }
+        [Required(ErrorMessage ="Year is required")]
+        [Range(1000, 2021,ErrorMessage ="Inser a valid year")]
         public int Year { get; set; }
+        [Required(ErrorMessage ="Select a genre from list")]
+        
+        [DisplayName("Genre")]
         public int GenreId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

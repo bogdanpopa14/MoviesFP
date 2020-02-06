@@ -48,6 +48,7 @@ namespace Movies.Web.Controllers
 
         private void PopuateSourceForDropdowns()
         {
+            
             var genreList = genreRepo.SelectAll();
             SelectList list2 = new SelectList(genreList, "Id", "Name");
             ViewBag.genreList = list2;
