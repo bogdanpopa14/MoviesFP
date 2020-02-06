@@ -31,11 +31,11 @@
                 <td>
                     @if  ((ViewBag.roles as List<IdentityRole>).Where(x => x.Id == (item.Roles.Where(y => y.UserId == item.Id).Select(z => z.RoleId).FirstOrDefault())).Select(j => j.Name).FirstOrDefault()=="Admin" )
                     {
-                        @Html.ActionLink("Delete admin role", "DeleteAdmin", "Account", new { user = item }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Delete admin role", "DeleteAdmin", "Account", new { id = item.Id}, new { @class = "btn btn-danger" })
                     }
                     else
                     {
-                        @Html.ActionLink("Give admin role", "GiveAdmin", "Account", new { user=item }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Give admin role", "GiveAdmin", "Account", new { id=item.Id }, new { @class = "btn btn-success" })
 
                     }
                     @Html.ActionLink("Delete", "Delete", "Account", new { user = item }, new { @class = "btn btn-danger" })

@@ -136,20 +136,20 @@ namespace Movies.Web.Controllers
         }
 
         
-        public ActionResult DeleteAdmin(ApplicationUser user)
+        public ActionResult DeleteAdmin(string id)
         {
            
-           var sm= UserManager.RemoveFromRole(user.Id, "Admin");
-            UserManager.AddToRole(user.Id, "User");
+           var sm= UserManager.RemoveFromRole(id, "Admin");
+            UserManager.AddToRole(id, "User");
             return RedirectToAction("Users");
         }
 
 
-        public ActionResult GiveAdmin(ApplicationUser user)
+        public ActionResult GiveAdmin(string id)
         {
+            UserManager.AddToRole(id, "Admin");
+            UserManager.RemoveFromRole(id, "User");
             
-            UserManager.RemoveFromRole(user.Id, "User");
-            UserManager.AddToRole(user.Id, "Admin");
             return RedirectToAction("Users");
         }
 
