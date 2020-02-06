@@ -11,6 +11,7 @@ using Movies.Web.Controllers;
 
 namespace Movies.Web.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdministrationController : Controller
     {
         private readonly MoviesRepository repo;
