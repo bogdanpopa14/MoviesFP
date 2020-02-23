@@ -153,9 +153,10 @@ namespace Movies.Web.Controllers
             return RedirectToAction("Users");
         }
 
-        public ActionResult Delete(ApplicationUser user)
+        public ActionResult Delete(string userId)
         {
-            var delete = UserManager.Delete(user);
+            ApplicationUser user = UserManager.FindById(userId);
+            UserManager.Delete(user);
             return RedirectToAction("Users");
         }
 

@@ -38,7 +38,7 @@
                         @Html.ActionLink("Give admin role", "GiveAdmin", "Account", new { id=item.Id }, new { @class = "btn btn-success" })
 
                     }
-                    @Html.ActionLink("Delete", "Delete", "Account", new { user = item }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Delete", "Delete", "Account", new { userId = item.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
